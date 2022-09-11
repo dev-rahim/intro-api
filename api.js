@@ -13,7 +13,7 @@ function LoadUsers() {
 function LoadPosts() {
     fetch('https://jsonplaceholder.typicode.com/posts')
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data => getPost(data));
 }
 
 function DisplayUsers(data) {
@@ -25,4 +25,18 @@ function DisplayUsers(data) {
         // console.log(users.name);
     }
     // console.log(data);
+}
+
+function getPost(allPost) {
+    const postContainer = document.getElementById('allPost');
+    for (const post of allPost) {
+        const p = document.createElement('p');
+        p.innerHTML = `
+        <h3>${post.title}</h3>
+        <p>${post.body}</p>
+        `;
+
+        p.classList.add('allposts');
+        postContainer.appendChild(p);
+    }
 }
